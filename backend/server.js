@@ -12,7 +12,7 @@ import { updateMatch } from "./controllers/match.controller.js";
 
 const app = express();
 const httpServer = createServer(app);
-const allowedOrigins = ["https://chess-game-lpzzc3vb0-dipak-kattels-projects.vercel.app/","http://localhost:5173","http://127.0.0.1:5173"];
+const allowedOrigins = ["https://chess-game-two-self.vercel.app","http://localhost:5173","http://127.0.0.1:5173"];
 app.use(cors({ origin: allowedOrigins, credentials: true }));
 const io = new Server(httpServer, {
   cors: {
@@ -37,7 +37,7 @@ const connect = async () => {
 };
 
 app.get("/", (req, res) => {
-  res.send("Hello, DS-Chess Game API Server is running!");
+  res.send("Hello, DS-ChessGame API Server is running!");
 });
 
 app.use("/api/auth", authRoute);
