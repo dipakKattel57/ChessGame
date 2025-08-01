@@ -22,7 +22,11 @@ const Login = () =>{
           console.log("Logged In Successfully.")
           setWait(false);
         } catch (err) {
-          setError(err.response.data)
+            if(err.response.status == 429){
+                setError(err.response.data.message)
+            }else{
+            setError(err.response.data)
+            }
           setWait(false)
         }
       }

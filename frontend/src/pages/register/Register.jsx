@@ -32,7 +32,11 @@ const Register = () =>{
             navigate("/")
             setWait(false);
         }catch(err){
+            if(err.response.status == 429){
+                setError(err.response.data.message)
+            }else{
             setError(err.response.data)
+            }
             setWait(false);
         }
     }

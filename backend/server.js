@@ -13,6 +13,7 @@ import { updateMatch } from "./controllers/match.controller.js";
 const app = express();
 const httpServer = createServer(app);
 const allowedOrigins = ["https://chess-game-two-self.vercel.app","http://localhost:5173","http://127.0.0.1:5173"];
+app.set("trust proxy", true);
 app.use(cors({ origin: allowedOrigins, credentials: true }));
 const io = new Server(httpServer, {
   cors: {
