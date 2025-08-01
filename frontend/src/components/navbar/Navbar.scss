@@ -1,0 +1,210 @@
+.Navbar {
+  z-index: 100;
+  position: sticky;
+  .container {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: black;
+    color: white;
+
+    .link {
+      text-decoration: none;
+      color: inherit;
+      .logo {
+        background-color: transparent;
+        font-size: 20px;
+        padding: 0px 20px;
+        .chess {
+          font-size: 30px;
+          color: #708de1;
+        }
+      }
+    }
+
+    .other {
+      background-color: transparent;
+      display: flex;
+      padding: 0px 20px;
+      gap: 20px;
+      justify-content: center;
+      align-items: center;
+      font-size: 1rem;
+      .playBtn {
+        box-shadow: 3px 3px 10px 3px #708de1 inset;
+        padding: 10px 20px;
+        color: #708de1;
+        font-size: 0.9rem;
+        font-weight: 500;
+        border: none;
+        border-radius: 10px;
+        background-color: transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+      .playBtn:hover {
+        color: white;
+        background-color: #708de1;
+      }
+      .profile {
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        img {
+          width: 30px;
+          height: 30px;
+          border: 2px solid white;
+          border-radius: 50%;
+          object-fit: contain;
+          cursor: pointer;
+          background-color: white;
+        }
+        span {
+          color: white;
+          -webkit-user-select: none;
+          user-select: none;
+          cursor: pointer;
+        }
+        .options {
+          background-color: white;
+          display: flex;
+          flex-direction: column;
+          position: absolute;
+          padding: 25px 20px;
+          border-radius: 12px;
+          gap: 10px;
+          top: 75px;
+          justify-content: center;
+          align-items: flex-start;
+          span {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            color: black;
+            -webkit-user-select: none;
+            user-select: none;
+            cursor: pointer;
+            img {
+              width: 15px;
+              height: 15px;
+              object-fit: cover;
+              border-radius: 0px;
+              cursor: pointer;
+              border: none;
+            }
+          }
+        }
+      }
+    }
+
+    .edit {
+      form {
+        border-radius: 12px;
+        background-color: black;
+        color: white;
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        position: fixed;
+        top: 100px;
+        left: 45%;
+        label {
+          font-size: 1.5rem;
+        }
+        button {
+          box-shadow: 3px 3px 10px 3px #708de1 inset;
+          padding: 10px 20px;
+          color: #708de1;
+          font-size: 0.9rem;
+          font-weight: 500;
+          border: none;
+          border-radius: 10px;
+          background-color: transparent;
+          cursor: pointer;
+        }
+        button:hover {
+          color: white;
+          background-color: #708de1;
+        }
+      }
+    }
+
+    .menuContainer,.menu {
+      display: none;
+    }
+  }
+  hr {
+    width: 100%;
+    height: 0px;
+    border: 0.5px solid rgb(240, 237, 237);
+  }
+
+  @media only screen and (max-width: 427px) {
+    .container {
+      height: 60px;
+      .other {
+        flex-direction: column;
+        position: absolute;
+        align-items: flex-start;
+        top: 0%;
+        left: 0%;
+        height: 20vh;
+        min-width: 30vw;
+        z-index: 10;
+        background-color: #ff69b48b;
+        padding: 100px 40px;
+        .playBtn {
+          box-shadow: none;
+          padding: 0px;
+          font-size: 1.5rem;
+          font-weight: 500;
+          border: none;
+          color: white;
+          cursor: pointer;
+        }
+        .playBtn:hover {
+          color: white;
+          background-color: transparent;
+        }
+        .profile {
+          margin-top: 0px;
+          img {
+            width: 20px;
+            height: 20px;
+            border: 0.5px solid black;
+          }
+          .options {
+            top: 175px;
+          }
+        }
+      }
+
+      .sidebarGo {
+        transform: translate(-443px, 0px);
+        position: absolute;
+        transition: transform 0.2s ease-out;
+      }
+
+      .edit {
+        form {
+          left: 10%;
+        }
+      }
+      .menuContainer{
+        display: block;
+        width: 30px;
+        height: 30px;
+        .menu {
+          display: block;
+        }
+      }
+    }
+  }
+}

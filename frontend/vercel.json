@@ -1,0 +1,24 @@
+{
+    "routes": [
+        {
+            "src": "/",
+            "dest":"/"
+          },
+          {
+            "src": "/game/(.*)",
+            "dest": "/"
+          },
+          {
+            "src": "/games",
+            "dest": "/"
+          },
+          {
+            "src": "/login",
+            "dest": "/"
+          },
+          {
+            "src": "/register",
+            "dest": "/"
+          }
+    ]
+}

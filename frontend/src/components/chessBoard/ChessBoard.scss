@@ -1,0 +1,96 @@
+.ChessBoard {
+  .row {
+    display: flex;
+  }
+  .square {
+    width: 60px;
+    height: 60px;
+    font-size: 3rem;
+    text-align: center;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+    color: black;
+  }
+  .row:nth-child(even) .square:nth-child(odd),
+  .row:nth-child(odd) .square:nth-child(even) {
+    background-color: #b58863;
+  }
+
+  .row:nth-child(odd) .square:nth-child(odd),
+  .row:nth-child(even) .square:nth-child(even) {
+    background-color: #f0d9b5;
+  }
+
+  .end{
+    padding: 30px 50px;
+    // background-color: white;
+    background-color: rgba(0,0,0,0.9);
+    display: flex;
+    flex-direction: column;
+    color: black;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border-radius: 12px;
+    position: absolute;
+    top:40%;
+    left:40%;
+    font-size: 1.5rem;
+    -webkit-user-select: none;
+    user-select: none;
+    .checkMate{
+      color: #a53b41;
+    }
+    button{
+      color:white;
+      padding: 5px 10px;
+      // background-color: #82ae61;
+      background-color: #4cAF50;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover{
+      // background-color: rgba(147, 199, 107, 0.847)
+      background-color: #45a049;
+    }
+  }
+  .promote{
+    span{
+      font-size: 1rem;
+      font-weight: 400;
+    }
+    div{
+      display: grid;
+      grid-template-columns: auto auto;
+      gap: 15px;
+      button{
+        color:black;
+      }
+    }
+  }
+
+  @media only screen and (max-width: 768px) {
+    .square {
+      width: 45px;
+      height: 45px;
+      font-size: 2rem;
+    }
+    .end{
+      top: 50%;
+      left:20%
+    }
+}
+@media only screen and (max-width: 427px) {
+  .square {
+    width: 35px;
+    height: 35px;
+    font-size: 2rem;
+  }
+  .end{
+    top: 50%;
+    left:20%
+  }
+}
+}
