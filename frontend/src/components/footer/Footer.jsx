@@ -12,7 +12,7 @@ const Footer  = () =>{
           <span className="buddy">Game</span>
         </div>
         <div className="section">
-        <Link to="https://github.com/tanu-chahal/CHESS-Buddy" className="link" target="_blank">{"Code </>"}</Link>
+        <Link to="https://github.com/dipakKattel57/ChessGame" className="link" target="_blank">{"Code </>"}</Link>
         <span></span></div>
         </div>
         </div>
