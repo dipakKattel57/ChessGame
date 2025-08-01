@@ -46,7 +46,7 @@ export const getMatch = async (req, res, next) => {
 
     const user = await User.findById(opponentId);
     if (!user)
-      return next(createError(404, "Your buddy not found on ChessBuddy."));
+      return next(createError(404, "Your buddy not found on DS-Chess Game."));
     const matchData = {
       ...final._doc,
       opponentName: user._doc.fullName,
@@ -75,7 +75,7 @@ export const createMatch = async (req, res, next) => {
     const user = await User.findOne({ email: req.body.email });
     if (!user)
       return next(
-        createError(404, "Your buddy isn't registered on ChessBuddy.")
+        createError(404, "Your buddy isn't registered on DS-Chess Game.")
       );
 
     if (req.userId == user._id)

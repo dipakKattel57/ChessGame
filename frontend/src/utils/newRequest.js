@@ -1,7 +1,7 @@
 import axios from "axios"
 
 const newRequest = axios.create({
-    baseURL: `${import.meta.env.VITE_CHESSBUDDY_API}/api`,
+    baseURL: `${import.meta.env.VITE_DS_CHESSGAME_API}/api`,
     withCredentials: true,
 });
 newRequest.interceptors.request.use(

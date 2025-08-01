@@ -42,7 +42,7 @@ const ChessBoard = ({
   const [available, setAvailable] = useState(null);
   const rows = ["8", "7", "6", "5", "4", "3", "2", "1"];
   const columns = ["A", "B", "C", "D", "E", "F", "G", "H"];
-  const socket = io(import.meta.env.VITE_CHESSBUDDY_API); 
+  const socket = io(import.meta.env.VITE_DS_CHESSGAME_API); 
 
   useEffect(() => {
     const handleUpdated = (updatedData) => {
