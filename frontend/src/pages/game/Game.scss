@@ -6,7 +6,7 @@
   background-color: black;
   min-height: 100vh;
   width: 100%;
-  overflow-x: hidden;
+  // overflow-x: hidden;
   .container {
     padding: 60px;
     width: 80%;
@@ -14,15 +14,15 @@
     flex-direction: column;
     gap: 20px;
     .left {
-      // align-self: flex-start;
-      margin: 100px 100px -150px -600px;
+      align-self: flex-start;
+      // margin: 100px 100px -150px -600px;
     }
     .right {
       align-self: center;
     }
     .me {
-      // align-self: flex-end;
-      margin: -150px -600px 100px 100px;
+      align-self: flex-end;
+      // margin: -150px -600px 100px 100px;
     }
     .opponent,
     .me {
