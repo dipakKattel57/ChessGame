@@ -103,6 +103,17 @@ export const updateMatch = async (data) => {
       { $set: { ...body } },
       { new: true }
     );
+    if(body.winner){
+let newData = JSON.parse(JSON.stringify(updatedData));
+      newData.status = "Timeout";
+
+      const finalUpdate = await Match.findByIdAndUpdate(
+      id,
+      { $set: { ...newData } },
+      { new: true }
+    );
+    return finalUpdate;
+    }
 
     const isCheck = handleCheckAndCheckmate(
       updatedData.turn,

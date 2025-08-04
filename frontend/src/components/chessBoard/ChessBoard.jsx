@@ -21,7 +21,8 @@ const ChessBoard = ({
   cS,
   status,
   online,
-  pTurn
+  pTurn,
+  socket
 }) => {
   const navigate = useNavigate();
   const currentUser = getCurrentUser();
@@ -40,14 +41,31 @@ const ChessBoard = ({
   const [castle, setCastle] = useState(null);
   const [castling, setCastling] = useState(cS);
   const [available, setAvailable] = useState(null);
+  const [gameStatus, setGameStatus] = useState(status);
   const rows = ["8", "7", "6", "5", "4", "3", "2", "1"];
   const columns = ["A", "B", "C", "D", "E", "F", "G", "H"];
-  const socket = io(import.meta.env.VITE_DS_CHESSGAME_API); 
+
+  // useEffect(()=>{
+  //   if(winner){
+  //     socket.emit("gameOver");
+  //   }
+  // }, [winner]);
+  
 
   useEffect(() => {
+    if(!socket){
+      return;
+    }
     const handleUpdated = (updatedData) => {
       setBoard(updatedData.boardState);
-      setTurn(updatedData.turn);
+      // setTurn((updatedData.turn)=>{
+
+      // });
+      setTurn(prev=>{
+        socket.emit("turnChange");
+        return updatedData.turn
+      })
+      setGameStatus(updatedData.status);
       setMoveN(updatedData.moves);
       setCheckedKing(updatedData.checkedKing);
       setWinner(updatedData.winner);
@@ -164,6 +182,11 @@ const ChessBoard = ({
       setCapture(false);
     }
   };
+
+  useEffect(()=>{
+    console.log(gameStatus);
+  },[gameStatus])
+
 
   const handleMovement = (row, col) => {
     if (!isSquareHighlighted(row, col)) {
@@ -286,7 +309,7 @@ const ChessBoard = ({
       {winner && (
         <div className="end">
           <span className="checkMate">
-            {winner === "Draw" ? "StaleMate!" : status=== "Aborted" ? "Aborted" : "CheckMate!"}
+            {winner === "Draw" ? "StaleMate!" : gameStatus== "Aborted" ? "Aborted" : gameStatus == "Timeout" ? "Timeout" : "CheckMate!"}
           </span>
           <span>
             {winner === whiteP

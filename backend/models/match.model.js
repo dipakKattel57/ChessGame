@@ -29,7 +29,7 @@ const matchSchema = new Schema(
     },
     status: {
       type: String,
-      enum: ["Finished", "Active", "Aborted"],
+      enum: ["Finished", "Active", "Aborted", "Timeout"],
       default: "Active",
     },
     boardState: {

@@ -53,7 +53,11 @@ app.use((err, req, res, next) => {
 
 const onlinePlayers = new Map();
 
+const matchTimerMap = new Map();
+
 io.on("connection", (socket) => {
+
+  
 
   socket.on("joinMatch", (code) => {
     console.log("Connected in room!");
@@ -61,11 +65,41 @@ io.on("connection", (socket) => {
       onlinePlayers.set(code, new Set());
     }
     onlinePlayers.get(code).add(socket.id);
+    
+    // socket.on("gameOver", ()=>{
+    //   let matchTimer = matchTimerMap.get(code);
+    //   clearInterval(matchTimer?.timerId);
+    //   matchTimerMap.delete(code)
+    // });
+
+    socket.on("turnChange", ()=>{
+      console.log("Turn Change Received")
+      let matchTimer = matchTimerMap.get(code);
+       matchTimerMap.set(code, {...matchTimer, time: 30})
+  });
 
     socket.join(code);
     const numberOfPlayers = onlinePlayers.get(code).size;
-   if(numberOfPlayers===2) io.to(code).emit("OpponentStatus", true);
-   else  socket.to(code).emit("OpponentStatus", false);
+   if(numberOfPlayers===2){
+    console.log("Two players")
+    io.to(code).emit("OpponentStatus", true)
+    if(!matchTimerMap.has(code)){
+      let timerId = setInterval(()=>{
+      let matchTimer = matchTimerMap.get(code);
+      io.to(code).emit("timer", matchTimer.time)
+      console.log("Timer emitted..")
+      let time = matchTimer.time - 1 >= 0 ? matchTimer.time - 1 : 0;
+      matchTimerMap.set(code, {...matchTimer, time})
+      },1000)
+      matchTimerMap.set(code, {timerId, time:30});
+    
+    }
+    
+    
+  }else{
+socket.to(code).emit("OpponentStatus", false);
+console.log("No two players")
+  }
 
     socket.on("disconnect", () => {
       onlinePlayers.get(code).delete(socket.id);
@@ -75,6 +109,11 @@ io.on("connection", (socket) => {
 
   socket.on("move", async (data) => {
     const updatedData = await updateMatch(data);
+    if(updatedData.winner){
+      let matchTimer = matchTimerMap.get(updatedData.code);
+      clearInterval(matchTimer?.timerId);
+      matchTimerMap.delete(updatedData.code)
+    }
     io.to(updatedData.code).emit("updated", updatedData);
   });
 });
