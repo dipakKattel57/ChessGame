@@ -20,7 +20,7 @@
 
   .row:nth-child(odd) .square:nth-child(odd),
   .row:nth-child(even) .square:nth-child(even) {
-    background-color: #f0d9b5;
+    background-color: #f8f3eb;
   }
 
   .end{
@@ -44,7 +44,7 @@
       color: #a53b41;
     }
     button{
-      color:white;
+      color:rgb(255, 255, 255);
       padding: 5px 10px;
       // background-color: #82ae61;
       background-color: #4cAF50;
